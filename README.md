@@ -181,5 +181,54 @@ Moving forward, we hope to continue showcasing underrepresented areas across the
 
 ***
 
+## Expanded Analysis (Individual Contribution)
+
+This section describes the additional work I completed after the group project was finished.
+
+### What I Built
+
+I shifted the project from **descriptive analysis to predictive modeling** to support forward-looking resource allocation for the Department of Health. Using the same cleaned dataset, I built an ARIMA-based forecasting pipeline that predicts future ILI/pneumonia ED visits across all 177+ NYC ZIP codes.
+
+### Improvements I Implemented
+- Built a full time series forecasting pipeline (`full_model_pipeline.ipynb`) that fits an ARIMA model per ZIP code.
+- Evaluated model performance against a naive baseline using RMSE.
+- Serialized all model results into a `.pkl` file for efficient loading.
+- Created an interactive **Streamlit dashboard** that lets users select a ZIP code and view historical trends alongside next-month forecasts.
+
+### Why These Changes Matter
+
+The original project answered *"where are the problems?"* — this expansion answers *"where will the problems be next month?"* By forecasting future visit volumes per ZIP code, the DOHMH can proactively allocate staffing, supplies, and funding before surges happen rather than reacting after the fact.
+
+### Running the Streamlit App
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/<your-username>/NYC-DOHMH-Analysis.git
+   cd NYC-DOHMH-Analysis
+   ```
+
+2. **Create and activate a virtual environment**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate        # macOS/Linux
+   # .venv\Scripts\activate          # Windows
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install streamlit pandas matplotlib
+   ```
+
+4. **Run the app**
+   ```bash
+   streamlit run project_expanded/app/app.py
+   ```
+
+5. The app will open in your browser at `http://localhost:8501`.
+
+> **Note:** The app uses a pre-generated `forecast_results.pkl` file included in the repo. To regenerate it, run the `project_expanded/full_model_pipeline.ipynb` notebook first.
+
+***
+
 > [!NOTE]
 > This is a fictitious scenario created by the GitHub authors for academic purposes only.
